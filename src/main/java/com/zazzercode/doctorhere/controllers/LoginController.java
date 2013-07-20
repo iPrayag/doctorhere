@@ -44,7 +44,6 @@ public class LoginController extends HttpServlet {
 			ServletContext context = getServletContext();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/main.jsp");
 			dispatcher.include(request, response);
-			// response.sendRedirect("main.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
 		}

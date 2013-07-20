@@ -1,3 +1,4 @@
+<%@ taglib prefix="bs" uri="http://efsavage.com/twitter-bootstrap" %>
 <html>
 <body>
 <form action="/doctorhere/login" method="post">
@@ -11,7 +12,7 @@
 	<input name="password" type="password"/>
 </div>
 <div>
-	<input name="login" type="submit"/>
+	<bs:button size="large" name="login" type="submit" style="primary">Login</bs:button>
 </div>
 </form>
 </body>

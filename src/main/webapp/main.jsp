@@ -1,14 +1,17 @@
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="bs" uri="http://efsavage.com/twitter-bootstrap" %>
 <html>
 <body>
-<!-- 
-<h1>welcome ${name}</h1>
- -->
-<h1>welcome <%= request.getAttribute("name") %>.</h1>
+
+<div> 
+<h3>welcome ${name}</h3>
 <a href="/doctorhere/logout">Logout</a>
+</div>
+
 <form action="/doctorhere/problem" method="post">
 <div>
     <label>Problem Title</label>
