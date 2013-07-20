@@ -31,7 +31,7 @@ public class MainController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
 		logger.info("Checking session : " + session);
-		if (null != session.getAttribute("userName")) {
+		if (null != session && null != session.getAttribute("userName")) {
 			logger.info("session user : " + session.getAttribute("userName"));
 			req.setAttribute("name", session.getAttribute("userName"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/main.jsp");
