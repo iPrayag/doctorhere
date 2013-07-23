@@ -35,8 +35,9 @@ public class DoctorCountTool extends Configured implements Tool{
         jobConf.setReducerClass(DoctorReducer.class);
 
         //the hdfs input and output directory to be fetched from the command line
-		FileInputFormat.addInputPath(jobConf, new Path("/tmp/wordcount/in"));
-		FileOutputFormat.setOutputPath(jobConf, new Path("/tmp/wordcount/out"));
+        // add any aline to input.txt
+		FileInputFormat.addInputPath(jobConf, new Path("/home/prayag/input.txt"));
+		FileOutputFormat.setOutputPath(jobConf, new Path("/home/prayag/output"));
 
 		JobClient.runJob(jobConf);
 		return 0; 
