@@ -14,5 +14,11 @@ headers
 ![headers](https://github.com/iPrayag/doctorhere-servlet/raw/master/snaps/index_headers.png)
 
 
+Run Hadoop
+==========
+`mvn exec:java -Dexec.mainClass="com.zazzercode.doctorhere.models.hadoop.DoctorCountMain"`
+
+
+
 
 
