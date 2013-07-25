@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  * Servlet implementation class LoginController
  */
@@ -36,7 +38,11 @@ public class LoginController extends HttpServlet {
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		logger.info("name : " + name);
-		if (name != null && name.equals("prayag.upd@gmail.com") && password != null && password.equals("123456")) {
+
+		//$2a$10$geLJEK4LeTY/1OE0EF/7nuz1XVRQlyrtf2ucny14uLR7tsufnirVy
+		String hashedPassword = BCrypt.hashpw("123456", BCrypt.gensalt());
+		logger.info("password hashed: " + hashedPassword);
+		if (name != null && name.equals("prayag.upd@gmail.com") && password != null && BCrypt.checkpw(password, hashedPassword)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userName", name);
 
