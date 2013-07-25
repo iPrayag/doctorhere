@@ -55,6 +55,13 @@
 	        <version>1.0.2</version>
 	    </dependency>
 
+	<!--jBcrypt 
+	<dependency>
+	       <groupId>org.mindrot</groupId>
+	       <artifactId>jbcrypt</artifactId>
+	       <version>0.3m</version>
+	</dependency>
+-->
   </dependencies>
   
   
@@ -71,6 +78,17 @@
 			     <downloadJavadocs>true</downloadJavadocs>
 		    </configuration>
 	    </plugin>
+
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.3.1</version>
+              <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+              </configuration>
+       </plugin>
+
     </plugins>
   </build>
 </project>
