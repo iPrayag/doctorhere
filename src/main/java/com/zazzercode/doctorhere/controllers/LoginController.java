@@ -1,6 +1,8 @@
 package com.zazzercode.doctorhere.controllers;
 
 import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -19,14 +21,20 @@ import org.mindrot.jbcrypt.BCrypt;
 // @WebServlet(name = "LoginController", urlPatterns = { "/login" }, value =
 // "login")
 public class LoginController extends HttpServlet {
+	private Level level = Level.ALL;
 	private Logger logger = Logger.getLogger(LoginController.class.getName());
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
+	 * @throws IOException 
+	 * @throws SecurityException 
 	 */
-	public LoginController() {
+	public LoginController() throws SecurityException, IOException {
+		FileHandler fileHandler = new FileHandler("/home/prayag/doctorhere.log", 1024, 50, true);
+		logger.setLevel(level);
+		logger.addHandler(fileHandler);
 	}
 
 	/**
@@ -45,7 +53,6 @@ public class LoginController extends HttpServlet {
 		if (name != null && name.equals("prayag.upd@gmail.com") && password != null && BCrypt.checkpw(password, hashedPassword)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userName", name);
-
 			request.setAttribute("name", name);
 			ServletContext context = getServletContext();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/main.jsp");
