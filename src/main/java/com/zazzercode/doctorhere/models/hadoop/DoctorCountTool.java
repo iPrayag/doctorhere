@@ -11,7 +11,7 @@ import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
-
+import java.io.File;
 
 import org.apache.hadoop.util.Tool;
 
@@ -36,8 +36,10 @@ public class DoctorCountTool extends Configured implements Tool{
 
         //the hdfs input and output directory to be fetched from the command line
         // add any aline to input.txt
-		FileInputFormat.addInputPath(jobConf, new Path("/home/prayag/input.txt"));
-		FileOutputFormat.setOutputPath(jobConf, new Path("/home/prayag/output"));
+	        String baseDir = System.getProperty("user.dir");//new File(".").getAbsolutePath();
+                System.out.println("Base dir : "+ baseDir);
+		FileInputFormat.addInputPath(jobConf, new Path(baseDir+"/src/main/java/Resources/input.csv"));
+		FileOutputFormat.setOutputPath(jobConf, new Path(baseDir+"/output"));//directory
 
 		JobClient.runJob(jobConf);
 		return 0; 
