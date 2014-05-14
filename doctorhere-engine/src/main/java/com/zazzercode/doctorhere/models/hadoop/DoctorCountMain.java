@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.zazzercode.doctorhere.models.hadoop;
 
 import java.util.logging.Logger;
