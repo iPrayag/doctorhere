@@ -39,4 +39,4 @@ Goto `http://localhost:8080/doctorhere/index.jsp`
 
 HTTP Request/Response headers
 =======
-![headers](https://github.com/iPrayag/doctorhere-servlet/raw/master/snaps/index_headers.png)
+![headers](https://github.com/iPrayag/doctorhere-servlet/raw/master/doctor-servlet/snaps/index_headers.png)
