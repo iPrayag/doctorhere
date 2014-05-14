@@ -8,7 +8,7 @@ This project is created using `maven-archetype-webapp`.
 Add M2_REPO to eclipse classpath
 ==================
 
-![M2_REPO](https://github.com/iPrayag/doctorhere-servlet/raw/master/snaps/ADD_M2_REPO_ECLIPSE.png)
+![M2_REPO](https://github.com/iPrayag/doctorhere-servlet/raw/master/doctorhere-servlet/snaps/ADD_M2_REPO_ECLIPSE.png)
 
 
 Get the war at target
@@ -24,7 +24,7 @@ The war name is defined at `<build>` section of `pom.xml`.
 
 
 
-![war](https://github.com/iPrayag/doctorhere-servlet/raw/master/snaps/war.png)
+![war](https://github.com/iPrayag/doctorhere-servlet/raw/master/doctorhere-servlet/snaps/war.png)
 
 
 run-app
