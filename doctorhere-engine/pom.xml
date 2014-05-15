@@ -16,6 +16,18 @@
 			<url>http://download.java.net/maven/2</url>
 	  </repository>
 
+      <repository>
+        <id>scala</id>
+        <name>Scala Tools</name>
+        <url>http://scala-tools.org/repo-releases/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+       </repository>
+
  </repositories>        
 
   <pluginRepositories>
@@ -24,6 +36,20 @@
       <name>googlecode-maven-install4j</name>
       <url>http://maven-install4j.googlecode.com/svn/m2-repo</url>
     </pluginRepository>
+
+    <!-- scala-->
+    <pluginRepository>
+        <id>scala</id>
+        <name>Scala Tools</name>
+        <url>http://scala-tools.org/repo-releases/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
+
   </pluginRepositories>
 
   <dependencies>
@@ -59,6 +85,21 @@
       <artifactId>braintree-java</artifactId>
       <version>2.22.1</version>
     </dependency>
+
+<!-- scala -->
+<dependency>
+    <groupId>org.scala-lang</groupId>
+    <artifactId>scala-library</artifactId>
+    <version>2.11.0</version>
+</dependency>
+
+<dependency>
+    <groupId>org.scalatest</groupId>
+    <artifactId>scalatest_2.11</artifactId>
+    <version>2.1.6</version>
+    <scope>test</scope>
+  </dependency>
+
   </dependencies>
   
   
@@ -81,12 +122,28 @@
       <argument>1</argument>
       <argument>2</argument>
     </arguments>
-  </configuration>
- </plugin>
- <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>cassandra-maven-plugin</artifactId>
- </plugin>
+   </configuration>
+</plugin>
+
+<plugin>
+<groupId>org.codehaus.mojo</groupId>
+<artifactId>cassandra-maven-plugin</artifactId>
+</plugin>
+
+<!--maven scala -->
+<plugin>
+                <groupId>org.scala-tools</groupId>
+               <artifactId>maven-scala-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
  </plugins>
   </build>
 </project>
