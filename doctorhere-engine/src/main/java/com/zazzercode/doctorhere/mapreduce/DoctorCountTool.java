@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.zazzercode.doctorhere.driver;
+package com.zazzercode.doctorhere.mapreduce;
 
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -14,7 +11,6 @@ import org.apache.hadoop.mapred.JobConf;
 import java.io.File;
 
 import org.apache.hadoop.util.Tool;
-import com.zazzercode.doctorhere.mapreduce;
 
 /**
  * responsible for triggering the map reduce job in Hadoop

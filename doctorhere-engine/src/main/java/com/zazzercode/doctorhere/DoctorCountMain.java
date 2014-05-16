@@ -6,8 +6,7 @@ import javax.print.Doc;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.util.ToolRunner;
-import com.zazzercode.doctorhere.driver.DoctorCountTool;
-
+import com.zazzercode.doctorhere.mapreduce.DoctorCountTool;
 
 /**
  * @author prayag
