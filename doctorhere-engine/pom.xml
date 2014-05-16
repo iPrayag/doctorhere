@@ -117,7 +117,7 @@
     </execution>
   </executions>
   <configuration>
-    <mainClass>com.zazzercode.doctorhere.models.hadoop.DoctorCountMain</mainClass>
+    <mainClass>com.zazzercode.doctorhere.DoctorCountMain</mainClass>
     <arguments>
       <argument>1</argument>
       <argument>2</argument>
