@@ -16,4 +16,14 @@ Run Hadoop Job (hadoop version 1.0.2)
 |run jobConf          |
 ```
 
+output
+------------
 
+```
+$ cat output/part-00000 
+AffectivePsychosis 1
+Asthma             1
+COPD               1
+Cancer             2
+ChronicPain        1
+```

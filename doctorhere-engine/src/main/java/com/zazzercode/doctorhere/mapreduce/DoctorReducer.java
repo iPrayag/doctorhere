@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zazzercode.doctorhere.models.hadoop;
+package com.zazzercode.doctorhere.mapreduce;
 
 import java.io.IOException;
 import java.util.Iterator;
