@@ -1,0 +1,11 @@
+drop keyspace doctorhere;
+
+create keyspace doctorhere
+    with strategy_options = [{replication_factor:1}]
+    and placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy';
+
+use doctorhere;
+
+create column family doctorhere.diseases 
+    and comparator = UTF8Type
+    and default_validation_class = UTF8Type;
