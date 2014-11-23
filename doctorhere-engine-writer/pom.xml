@@ -10,7 +10,9 @@
     <name>DoctorhereEngineWriter</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <cassandra.version>2.0.7</cassandra.version>
+      <hector.version>1.0-2</hector.version>
     </properties>
 
     <build>
@@ -50,7 +52,7 @@
         <dependency>
             <groupId>me.prettyprint</groupId>
             <artifactId>hector-core</artifactId>
-            <version>1.0-2</version>
+            <version>${hector.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>org.apache.thrift</artifactId>
@@ -61,7 +63,7 @@
         <dependency>
             <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
-            <version>1.1.1</version>
+	    <version>${cassandra.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>libthrift</artifactId>
@@ -72,7 +74,7 @@
         <dependency>
             <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-thrift</artifactId>
-            <version>1.1.1</version>
+	    <version>${cassandra.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>libthrift</artifactId>

@@ -47,8 +47,14 @@ public class DiseaseCountJob extends Configured implements Tool {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
         
-	String baseDir = System.getProperty("user.dir");
-	String input   = baseDir+"/src/main/resources/histories"; //args[0]
+        String baseDir = System.getProperty("user.dir");
+        String input_   = baseDir+"/src/main/resources/shakespeare/histories"; //args[0]
+        String input = args[0]+"/histories";
+
+        System.out.println("==================================================================");
+        System.out.println("================= reading file from " + input + " ===========");
+        System.out.println("==================================================================");
+
         FileInputFormat.setInputPaths(job, new Path(input));
         
         job.setOutputFormatClass(org.apache.cassandra.hadoop.BulkOutputFormat.class);
