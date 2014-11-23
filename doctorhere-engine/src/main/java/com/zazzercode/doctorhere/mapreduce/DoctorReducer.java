@@ -14,6 +14,8 @@ import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 
+import com.zazzercode.doctorhere.services.CassandraConnector;
+
 /**
  * @author prayag
  *
@@ -28,6 +30,7 @@ public class DoctorReducer extends MapReduceBase implements Reducer<Text, IntWri
         while (values.hasNext()) {
             sum +=  values.next().get();
         }
+	//write processed data to cassandra
         output.collect(key, new IntWritable(sum));
 		
 	}

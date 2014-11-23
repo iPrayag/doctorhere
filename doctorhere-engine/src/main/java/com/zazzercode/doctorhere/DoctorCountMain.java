@@ -7,7 +7,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.util.ToolRunner;
 import com.zazzercode.doctorhere.mapreduce.DoctorCountTool;
-
+import com.zazzercode.doctorhere.CassandraConnector;
 /**
  * @author prayag
  * @see http://kickstarthadoop.blogspot.com/2011/04/word-count-hadoop-map-reduce-example.html
@@ -16,7 +16,7 @@ import com.zazzercode.doctorhere.mapreduce.DoctorCountTool;
 public class DoctorCountMain {
 
 	private static Logger logger = Logger.getLogger(DoctorCountMain.class.getName());
-	
+      
 	/**
 	 * @param args
 	 */

@@ -15,7 +15,7 @@
 			<name>Repository hosting the jee6 artifacts</name>
 			<url>http://download.java.net/maven/2</url>
 	  </repository>
-
+       <!-- scala repo -->
       <repository>
         <id>scala</id>
         <name>Scala Tools</name>
@@ -37,7 +37,7 @@
       <url>http://maven-install4j.googlecode.com/svn/m2-repo</url>
     </pluginRepository>
 
-    <!-- scala-->
+    <!-- scala plugin repo -->
     <pluginRepository>
         <id>scala</id>
         <name>Scala Tools</name>
@@ -49,10 +49,16 @@
             <enabled>false</enabled>
         </snapshots>
     </pluginRepository>
+    <!-- scala -->
 
   </pluginRepositories>
 
   <dependencies>
+<dependency>
+	<groupId>joda-time</groupId>
+	<artifactId>joda-time</artifactId>
+	<version>2.3</version>
+</dependency>
 	
 	<dependency>
 	      <groupId>junit</groupId>
@@ -101,17 +107,21 @@
   </dependency>
 
   </dependencies>
-  
+<!-- scala-->
 
   <build>
-    <plugins>
+<plugins>
+
+<!-- start main method-->
+
+
 <plugin>
   <groupId>org.codehaus.mojo</groupId>
   <artifactId>exec-maven-plugin</artifactId>
   <version>1.2.1</version>
   <executions>
 	  <execution>
-		  <phase>test</phase>  
+		  	  <phase>test</phase> 
     <goals>
        <goal>java</goal>
       </goals>
@@ -125,6 +135,7 @@
     </arguments>
    </configuration>
 </plugin>
+
 
 <plugin>
 <groupId>org.codehaus.mojo</groupId>
@@ -141,19 +152,36 @@
                                  </configuration>                                                       
                          </plugin> 
 
-<!--maven scala -->
-<plugin>
-                <groupId>org.scala-tools</groupId>
-               <artifactId>maven-scala-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--maven scala plugin-->
+    <plugin>
+			<groupId>org.scala-tools</groupId>
+			<artifactId>maven-scala-plugin</artifactId>
+			<executions>
+
+				<execution>
+					<id>scala-compile-first</id>
+					<phase>process-resources</phase>
+					<goals>
+						<goal>add-source</goal>
+						<goal>compile</goal>
+					</goals>
+					
+				</execution>
+				<execution>
+					<id>test-compile</id>
+					<goals>
+						<goal>testCompile</goal>
+					</goals>
+					<phase>test-compile</phase>
+				</execution>
+                <execution>
+                   <phase>process-resources</phase>
+                   <goals>
+                     <goal>compile</goal>
+                   </goals>
+                </execution>
+			</executions>
+		</plugin>
 
  </plugins>
   </build>
