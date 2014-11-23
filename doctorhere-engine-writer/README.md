@@ -21,6 +21,7 @@ Putting (Big) Data Into Hadoop  FS
     $ jps
 
     ## create hdfs folder and copy local data to the same hdfs
+    $ hdfs dfs -rm -r -f /usr/hduser
     $ hdfs dfs -mkdir -p /user/hduser/
     $ hdfs dfs -copyFromLocal src/main/resources/shakespeare /usr/hduser/
 
@@ -42,7 +43,7 @@ Building The JAR
 Running It On A Cluster
 -----------------------
 
-    $ hadoop jar target/doctorhere-engine-writer-1.0-jar-with-dependencies.jar /user/hduser/shakespeare
+    $ hadoop jar target/doctorhere-engine-writer-1.0-jar-with-dependencies.jar /usr/hduser/shakespeare
 
 Further Readings
 ----------------
