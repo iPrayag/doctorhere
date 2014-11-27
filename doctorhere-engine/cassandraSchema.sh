@@ -53,14 +53,19 @@ CREATE TABLE doctors (
 #insert document
 INSERT INTO Doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
   VALUES (1745, 'john', 'smith', {'Psychologist'}, {'Discovered cancer medicine' : '2007'}, '1989-10-28');
-INSERT INTO users (doctorId,  fName, lName, achievements)
-  VALUES (1744, 'john', 'doe', {'ears', 'nose'},  {'Discovered cancer medicine' : '2007', now());
-INSERT INTO users (doctorId,  fName, lName, achievements)
-  VALUES (1746, 'Rajesh', 'Hamal', {'nose'},  {'Discovered cancer medicine' : '2007', dateof());
+
+INSERT INTO doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1744, 'john', 'doe', {'ears', 'nose'},  {'Discovered cancer medicine' : '2007'}, '2010'); 
+;;now()
+
+INSERT INTO doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1746, 'Rajesh', 'Hamal', {'nose'},  {'Discovered cancer medicine' : '2007'}, '2014'); 
+;;dateof()
 
 
 # fetch documents
-# cqlsh:doctorhere> select * from doctors where doctorId=1745;
+# select * from doctors where doctorId=1745;
+# select * from doctors where joinedDate>='1989' ALLOW FILTERING
 cqlsh:doctorhere> select * from doctors ;
 
  doctorid | joineddate               | achievements                           | fname | lname | specialities
