@@ -18,7 +18,8 @@ CREATE TABLE Doctors (
   fName text,
   lName text, 
   specialities Set<text>,
-  achievements map<text, text>
+  achievements map<text, text>,
+  joinedDate timestamp
 );
 
 # DESC
@@ -30,7 +31,8 @@ CREATE TABLE doctors (
   lName text,
   specialities Set<text>,
   achievements map<text, text>,
-  PRIMARY KEY (doctorId)
+  joinedDate timestamp,
+  PRIMARY KEY (doctorId, joinedDate)
 ) WITH
   bloom_filter_fp_chance=0.010000 AND
   caching='KEYS_ONLY' AND
@@ -49,21 +51,23 @@ CREATE TABLE doctors (
 
 
 #insert document
-INSERT INTO Doctors (doctorId,  fName, lName, specialities, achievements)
-  VALUES (1745, 'john', 'smith', {'Psychologist'}, {'Discovered cancer medicine' : '2007'});
+INSERT INTO Doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1745, 'john', 'smith', {'Psychologist'}, {'Discovered cancer medicine' : '2007'}, '1989-10-28');
 INSERT INTO users (doctorId,  fName, lName, achievements)
-  VALUES (1744, 'john', 'doe', {'ears', 'nose'},  {'Discovered cancer medicine' : '2007');
+  VALUES (1744, 'john', 'doe', {'ears', 'nose'},  {'Discovered cancer medicine' : '2007', now());
 INSERT INTO users (doctorId,  fName, lName, achievements)
-  VALUES (1746, 'Rajesh', 'Hamal', {'nose'},  {'Discovered cancer medicine' : '2007');
+  VALUES (1746, 'Rajesh', 'Hamal', {'nose'},  {'Discovered cancer medicine' : '2007', dateof());
 
 
-#fetch documents
+# fetch documents
+# cqlsh:doctorhere> select * from doctors where doctorId=1745;
 cqlsh:doctorhere> select * from doctors ;
 
- doctorid | fname | lname | specialities
-----------+-------+-------+------------------
-     1745 |  john | smith | {'Psychologist'}
+ doctorid | joineddate               | achievements                           | fname | lname | specialities
+----------+--------------------------+----------------------------------------+-------+-------+------------------
+     1745 | 1989-10-28 00:00:00+0545 | {'Discovered cancer medicine': '2007'} |  john | smith | {'Psychologist'}
 
 (1 rows)
+
 
 
