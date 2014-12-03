@@ -9,8 +9,8 @@ Requirements
 ------------
 
 * Java SE 6
-* Cassandra 1.1.1 or later
-* Hadoop 0.20.205.0
+* Cassandra 2.0.7 or later (`wget http://archive.apache.org/dist/cassandra/2.0.7/apache-cassandra-2.0.7-bin.tar.gz`)
+* Hadoop 2.2.0
 * mvn 2 or later
 
 Putting (Big) Data Into Hadoop  FS

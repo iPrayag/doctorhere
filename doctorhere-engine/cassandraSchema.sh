@@ -3,31 +3,36 @@
 # @see : http://wiki.apache.org/cassandra/gettingstarted
 ##
 
-##CREATE space
+## from cqlsh
+## CREATE space
 CREATE KEYSPACE doctorhere
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
 
 USE doctorhere;
 
-#whats the difference between creating a table and creating a columnfamily in cassandra?
-#http://stackoverflow.com/a/18833933/432903
-#create type
+# whats the difference between creating a table and creating a columnfamily in cassandra?
+# http://stackoverflow.com/a/18833933/432903
+# create ColumnFamily/type
 CREATE TABLE Doctors (
   doctorId int PRIMARY KEY,
   fName text,
   lName text, 
-  specialities text
+  specialities Set<text>,
+  achievements map<text, text>,
+  joinedDate timestamp
 );
 
-#desc
+# DESC
 DESCRIBE TABLE doctorhere.doctors 
 
 CREATE TABLE doctors (
-  doctorid int,
-  fname text,
-  lname text,
-  specialities text,
-  PRIMARY KEY (doctorid)
+  doctorId int,
+  fName text,
+  lName text,
+  specialities Set<text>,
+  achievements map<text, text>,
+  joinedDate timestamp,
+  PRIMARY KEY (doctorId, joinedDate)
 ) WITH
   bloom_filter_fp_chance=0.010000 AND
   caching='KEYS_ONLY' AND
@@ -46,15 +51,28 @@ CREATE TABLE doctors (
 
 
 #insert document
-INSERT INTO Doctors (doctorId,  fName, lName, specialities)
-  VALUES (1745, 'john', 'smith', "Psychologist");
-INSERT INTO users (doctorId,  fName, lName)
-  VALUES (1744, 'john', 'doe', "ears");
-INSERT INTO users (doctorId,  fName, lName)
-  VALUES (1746, 'Rajesh', 'Hamal', "nose");
+INSERT INTO Doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1745, 'john', 'smith', {'Psychologist'}, {'Discovered cancer medicine' : '2007'}, '1989-10-28');
+
+INSERT INTO doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1744, 'john', 'doe', {'ears', 'nose'},  {'Discovered cancer medicine' : '2007'}, '2010'); 
+;;now()
+
+INSERT INTO doctors (doctorId,  fName, lName, specialities, achievements, joinedDate)
+  VALUES (1746, 'Rajesh', 'Hamal', {'nose'},  {'Discovered cancer medicine' : '2007'}, '2014'); 
+;;dateof()
 
 
-#fetch documents
-SELECT * FROM Doctors;
+# fetch documents
+# select * from doctors where doctorId=1745;
+# select * from doctors where joinedDate>='1989' ALLOW FILTERING
+cqlsh:doctorhere> select * from doctors ;
+
+ doctorid | joineddate               | achievements                           | fname | lname | specialities
+----------+--------------------------+----------------------------------------+-------+-------+------------------
+     1745 | 1989-10-28 00:00:00+0545 | {'Discovered cancer medicine': '2007'} |  john | smith | {'Psychologist'}
+
+(1 rows)
+
 
 
