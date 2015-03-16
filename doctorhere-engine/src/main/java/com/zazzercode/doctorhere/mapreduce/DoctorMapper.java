@@ -25,6 +25,10 @@ public class DoctorMapper extends MapReduceBase implements Mapper<LongWritable, 
     @Override
     public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
         String line = value.toString();
+        System.out.println("=========================================");
+        System.out.println("processing line : " + line);
+        System.out.println("=========================================");
+      	    
         StringTokenizer itr = new StringTokenizer(line);
         while (itr.hasMoreTokens()) {
         	String token = itr.nextToken();

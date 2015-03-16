@@ -26,6 +26,10 @@ public class DoctorReducer extends MapReduceBase implements Reducer<Text, IntWri
 	
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+        System.out.println("=========================================");
+        System.out.println(" collecting results : " + values);
+        System.out.println("=========================================");
+
 		int sum = 0;
         while (values.hasNext()) {
             sum +=  values.next().get();

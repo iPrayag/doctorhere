@@ -22,6 +22,7 @@ public class DoctorCountTool extends Configured implements Tool{
 	@Override
 	public int run(String[] arg0) throws Exception {
 		JobConf jobConf = new JobConf(getConf(), DoctorCountTool.class);
+		jobConf.setJarByClass(getClass());
 		jobConf.setJobName("DoctorCountTool");
 
 		//Setting configuration object with the Data Type of output Key and Value
@@ -34,9 +35,20 @@ public class DoctorCountTool extends Configured implements Tool{
         //the hdfs input and output directory to be fetched from the command line
         // add any aline to input.txt
 	        String baseDir = System.getProperty("user.dir");//new File(".").getAbsolutePath();
-                System.out.println("Base dir : "+ baseDir);
-		FileInputFormat.addInputPath(jobConf, new Path(baseDir+"/src/main/java/Resources/input.csv"));
-		FileOutputFormat.setOutputPath(jobConf, new Path(baseDir+"/output"));//directory
+    //works when running using mvn
+		final String hdfsInput  = "/user/hduser/doctorhere/input.csv";
+		final String hdfsOutput = "/user/hduser/doctorhere/output.csv";
+		String lfsInput = "doctorhere/input.csv";
+		String lfsOutput = "doctorhere/output";
+
+                System.out.println("=========================================");
+                System.out.println("Input hdfs dir : "+ lfsInput);
+                System.out.println("=========================================");
+                System.out.println("Output hdfs dir : "+ lfsOutput);
+                System.out.println("=========================================");
+
+		FileInputFormat.addInputPath(jobConf, new Path(lfsInput));
+		FileOutputFormat.setOutputPath(jobConf, new Path(lfsOutput));//directory
 
 		JobClient.runJob(jobConf);
 		return 0; 
