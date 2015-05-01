@@ -1,13 +1,12 @@
 package com.zazzercode.doctorhere;
 
+import com.zazzercode.doctorhere.mapreduce.DoctorCountDriver;
 import java.util.logging.Logger;
-import javax.print.Doc;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.util.ToolRunner;
-import com.zazzercode.doctorhere.mapreduce.DoctorCountTool;
-import com.zazzercode.doctorhere.CassandraConnector;
+
 /**
  * @author prayag
  * @see http://kickstarthadoop.blogspot.com/2011/04/word-count-hadoop-map-reduce-example.html
@@ -22,7 +21,7 @@ public class DoctorCountMain {
 	 */
 	public static void main(String[] args) {
 		try {
-			int res = ToolRunner.run(new Configuration(), new DoctorCountTool(),args);
+			int res = ToolRunner.run(new Configuration(), new DoctorCountDriver(),args);
 			System.exit(res);
 		} catch (Exception e) {
 			logger.warning("Exception : ");
@@ -34,7 +33,7 @@ public class DoctorCountMain {
 		IntWritable one = new IntWritable(1);
 		logger.info("This is hadoop saying one : "+one);
 		try {
-			int res = ToolRunner.run(new Configuration(), new DoctorCountTool(), args);
+			int res = ToolRunner.run(new Configuration(), new DoctorCountDriver(), args);
 			System.exit(res);
 		} catch (Exception e) {
 			logger.warning("Exception : ");

@@ -23,17 +23,18 @@ public class DoctorMapper extends MapReduceBase implements Mapper<LongWritable, 
     private Text word = new Text();
  
     @Override
-    public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+    public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> outputCollector, Reporter reporter) throws IOException {
         String line = value.toString();
         System.out.println("=========================================");
         System.out.println("processing line : " + line);
         System.out.println("=========================================");
-      	    
+
+        //write count of each term as 1 from input documents
         StringTokenizer itr = new StringTokenizer(line);
         while (itr.hasMoreTokens()) {
         	String token = itr.nextToken();
-            word.set(token);
-            output.collect(word, ONE);
+          word.set(token);
+          outputCollector.collect(word, ONE);
         }
     }
 

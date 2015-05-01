@@ -4,6 +4,7 @@ doctorhere-engine
 <b>architecture</b>
 
 ```
+
 |DoctorCountTool      |             | DoctorMapper  |        | DoctorReducer | 
 |create a jobConf and |             | .collect      |        | .collect      |      
 |add input            |             |               |        |               |
@@ -11,6 +12,7 @@ doctorhere-engine
 |set mapper           |
 |                     |
 |run jobConf          |
+
 ```
 
 
@@ -19,6 +21,7 @@ Run Hadoop Job (hadoop version 1.0.2) against a hadoop cluster
 
 
 ```
+
 #enter hduser
 su - hduser
 
@@ -27,6 +30,9 @@ su - hduser
 /usr/local/hadoop-2.2.0/sbin/start-yarn.sh
 
 #create doctorhere folder in hdfs
+
+//There should be `/user/hduser`, otherwise hadoop fs -mkdir -p /user/[current login user]
+
 hdfs dfs -mkdir -p /user/hduser/doctorhere
 
 or 

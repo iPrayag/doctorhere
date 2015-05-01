@@ -25,18 +25,18 @@ public class DoctorReducer extends MapReduceBase implements Reducer<Text, IntWri
 	private IntWritable count = new IntWritable();
 	
 	@Override
-	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+	public void reduce(Text keyFromMapper, Iterator<IntWritable> valuesForKey, OutputCollector<Text, IntWritable> outputCollector, Reporter reporter) throws IOException {
         System.out.println("=========================================");
-        System.out.println(" collecting results : " + values);
+        System.out.println(" collecting results for : " + valuesForKey);
         System.out.println("=========================================");
 
-		int sum = 0;
-        while (values.hasNext()) {
-            sum +=  values.next().get();
+        // sum all data for a key
+        // (key, [value1, value2, value3])
+        int sum = 0;
+        while (valuesForKey.hasNext()) {
+            sum +=  valuesForKey.next().get();
         }
-	//write processed data to cassandra
-        output.collect(key, new IntWritable(sum));
-		
+        //write processed data to cassandra
+        outputCollector.collect(keyFromMapper, new IntWritable(sum));
 	}
-
 }
